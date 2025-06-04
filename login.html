@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="./styles/cta.css" />
     <link rel="stylesheet" href="./styles/footer.css" />
     <link rel="stylesheet" href="./styles/globalStyle.css" />
@@ -70,6 +70,8 @@
     </main>
 
     <script>
+      const BACKEND_URL = 'https://ecoresidencialtarbalho.onrender.com';
+
       // Alternar entre formulários de login e registro
       document.getElementById('showRegister').addEventListener('click', (e) => {
         e.preventDefault();
@@ -107,7 +109,7 @@
         const senha = document.getElementById('loginPassword').value;
 
         try {
-          const response = await fetch('http://localhost:3000/login', {
+          const response = await fetch(`${BACKEND_URL}/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -139,7 +141,7 @@
         const tipo = document.getElementById('registerType').value;
 
         try {
-          const response = await fetch('http://localhost:3000/registro', {
+          const response = await fetch(`${BACKEND_URL}/registro`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

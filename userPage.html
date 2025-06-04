@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="./styles/cta.css" />
     <link rel="stylesheet" href="./styles/footer.css" />
     <link rel="stylesheet" href="./styles/globalStyle.css" />
@@ -117,6 +117,8 @@
     </div>
 
     <script>
+      const BACKEND_URL = 'https://ecoresidencial-backend.onrender.com';
+
       // Verificar se o usuário está logado
       function verificarLogin() {
         const usuario = localStorage.getItem('usuario');
@@ -175,7 +177,7 @@
         const profileImage = document.getElementById('profileImage');
         
         if (usuario.fotoPerfil) {
-          profileImage.src = `http://localhost:3000/uploads/${usuario.fotoPerfil}`;
+          profileImage.src = `${BACKEND_URL}/uploads/${usuario.fotoPerfil}`;
         } else {
           profileImage.src = 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg';
         }
@@ -189,7 +191,7 @@
         formData.append('usuarioId', usuario.id);
 
         try {
-          const response = await fetch('http://localhost:3000/atualizar-foto-perfil', {
+          const response = await fetch(`${BACKEND_URL}/atualizar-foto-perfil`, {
             method: 'POST',
             body: formData
           });
@@ -217,7 +219,7 @@
         lista.innerHTML = 'Carregando...';
 
         try {
-          const response = await fetch('http://localhost:3000/materiais');
+          const response = await fetch(`${BACKEND_URL}/materiais`);
           const materiais = await response.json();
 
           // Filtra só os materiais do usuário logado
@@ -263,7 +265,7 @@
       async function excluirMaterial(materialId) {
         const usuario = verificarLogin();
         try {
-          const response = await fetch(`http://localhost:3000/remover-material/${materialId}`, {
+          const response = await fetch(`${BACKEND_URL}/remover-material/${materialId}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json'
@@ -332,7 +334,7 @@
           }
 
           try {
-            const response = await fetch('http://localhost:3000/atualizar-perfil', {
+            const response = await fetch(`${BACKEND_URL}/atualizar-perfil`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json'
@@ -379,7 +381,7 @@
           }
 
           try {
-            const response = await fetch("http://localhost:3000/adicionar", {
+            const response = await fetch(`${BACKEND_URL}/adicionar`, {
               method: "POST",
               body: formData,
             });

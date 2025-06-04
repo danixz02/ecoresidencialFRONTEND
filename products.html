@@ -42,9 +42,11 @@
     </main>
 
     <script>
+      const BACKEND_URL = 'https://ecoresidencialtarbalho.onrender.com';
+
       async function carregarMateriais() {
         try {
-          const response = await fetch('http://localhost:3000/materiais');
+          const response = await fetch(`${BACKEND_URL}/materiais`);
           const materiais = await response.json();
           const cardContainer = document.getElementById('cardContainer');
 
@@ -61,7 +63,7 @@
           cardContainer.innerHTML = materiais.map(material => `
             <div class="material-card">
               <img 
-                src="${material.imagem ? `http://localhost:3000/uploads/${material.imagem}` : 'https://via.placeholder.com/300x200?text=Sem+Imagem'}" 
+                src="${material.imagem ? `${BACKEND_URL}/uploads/${material.imagem}` : 'https://via.placeholder.com/300x200?text=Sem+Imagem'}" 
                 alt="${material.nome}"
                 class="material-image"
               />
